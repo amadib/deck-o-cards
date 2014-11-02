@@ -18,14 +18,22 @@ public class Card {
 	}
 	@Override
 	public String toString(){
+		if (face.ordinal() == 0 || face.ordinal() >= 10 ){
+			return face.name() + " of " + suit.name();
+		} else {
+			return (face.ordinal()+1) + " of " + suit.name();
+		}
+	}
+	
+	public String printFaceFirst(){
 		return Utils.padRight(face.name(), 5) + " " + suit.name();
 	}
-	public String toStringBackwards() {
+	public String printSuitFirst() {
 		return Utils.padRight(suit.name(), 8) + " " + face.name();
 	}
 	
-	/*
-	 * Deprecated methods
+	/**
+	 * Deprecated methods  
 	 */
 	@Deprecated
 	private Card next = null;

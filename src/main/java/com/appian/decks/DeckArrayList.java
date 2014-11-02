@@ -35,18 +35,27 @@ public class DeckArrayList implements IDeck{
 		deck = new ArrayList<Card>(Arrays.asList(deckOfCards));
 	}
 	
+	/**
+	 * Randomly reorders cards in deck using in memory technique over a single pass.
+	 * 
+	 * Each card will be randomly selected and inserted at random at the end of the deck. 
+	 */
 	public void shuffle() {
+		if (deck.size() == 0){
+			logger.warn("Deck is empty.");
+			return;
+		}
 		boolean first = true;
-		for (int numberOfCards = deck.size() + 1; numberOfCards >= 0; numberOfCards--) 
+		for (int numberOfCards = deck.size()-1; numberOfCards >= 0; numberOfCards--) 
 		{
-			Card c = deck.remove(Utils.randomPostionBtw(numberOfCards));
+			Card c = deck.remove(Utils.randomPostionBtwn(numberOfCards));
 			if (first) {
 				deck.add(c);
 				first = false;
 			}
 			else {
 				int index = -1;
-				index = (numberOfCards - 1) + Utils.randomPostionBtw((deck.size()) - numberOfCards);
+				index = (numberOfCards - 1) + Utils.randomPostionBtwn((deck.size()) - numberOfCards);
 				if(index < 0){
 					index *= index;
 				}
@@ -54,7 +63,11 @@ public class DeckArrayList implements IDeck{
 			}
 		}
 	}
-
+	/**
+	 * Returns one card from deck
+	 * 
+	 * @return the topmost card; null if the deck is empty
+	 */
 	public Card dealOneCard() {
 		if(deck.size() > 0){
 			return deck.remove(0);
@@ -64,28 +77,43 @@ public class DeckArrayList implements IDeck{
 			return null;
 		}
 	}
+	
+	@Override
+	public String toString(){
+		if (deck.size() == 0 ){
+			logger.warn("Deck is empty.");
+			return "Deck is empty.";
+		}
+		StringBuilder sb = new StringBuilder();
+		int count = 1;
+		for(Card c : deck){
+			sb.append(c.toString() + ((count < deck.size()) ? ", " : ""));
+			count++;
+		}
+		return sb.toString();
+	}
 
 	public void printSuitFirst() {
 		for(Card c : deck){
-			logger.info(c.toStringBackwards());
+			System.out.println(c.printSuitFirst());
 		}
 	}
 
-	public void printSuitFirstBackwards() {
+	public void printBackwardsSuitFirst() {
 		for(int i = deck.size(); i >= 0; i--){
-			logger.info(deck.get(i).toStringBackwards());
+			System.out.println(deck.get(i).printSuitFirst());
 		}
 	}
 
-	public void printBackwards() {
+	public void printBackwardsFaceFirst() {
 		for(int i = deck.size(); i >= 0; i--){
-			logger.info(deck.get(i).toString());
+			System.out.println(deck.get(i).printFaceFirst());
 		}
 	}
 
-	public void print() {
+	public void printFaceFirst() {
 		for(Card c : deck){
-			logger.info(c.toString());
+			System.out.println(c.printFaceFirst());
 		}		
 	}
 }

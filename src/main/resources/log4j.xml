@@ -8,7 +8,7 @@
 		</layout>
 	</appender>
 	<logger name="com.appian">
-		<level value="DEBUG" />
+		<level value="OFF" />
 	</logger>
 	<root>
 		<priority value="WARN" />
