@@ -46,9 +46,10 @@ public class DeckArrayList implements IDeck{
 			}
 			else {
 				int index = -1;
-				do {
-					index = (numberOfCards - 1) + Utils.randomPostionBtw((deck.size()) - numberOfCards);
-				} while (index < 0);
+				index = (numberOfCards - 1) + Utils.randomPostionBtw((deck.size()) - numberOfCards);
+				if(index < 0){
+					index *= index;
+				}
 				deck.add(index, c);
 			}
 		}
