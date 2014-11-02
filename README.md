@@ -11,9 +11,11 @@ This project has dependencies on log4j.
 
 It may be built and run with maven by executing the following command:
 
-    mvn clean install exec:java -Dmaven.test.skip=true
+    mvn install exec:java -Dmaven.test.skip=true
 
-Or within eclipse with the [M2eclipse](https://www.eclipse.org/m2e/)eclipse plugin
+Importing the project as an *Existing Maven Project* within eclipse with the [M2eclipse](https://www.eclipse.org/m2e/) plugin installed and running the following goal:
+
+    install exec:java -Dmaven.test.skip=true
 
 ## Installation
 Then you can download this repository with
