@@ -20,9 +20,9 @@ public interface IDeck {
 	public Card dealOneCard();
 
 	public void printSuitFirst();
-	public void printSuitFirstBackwards();
+	public void printBackwardsSuitFirst();
 	
-	public void printBackwards();
+	public void printFaceFirst();
+	public void printBackwardsFaceFirst();
 
-	public void print();
 }
